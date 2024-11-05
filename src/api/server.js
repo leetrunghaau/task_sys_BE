@@ -1,7 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
-require('./v1/controllers/address-controller')
 // Load environment variables from .env file
 dotenv.config();
 

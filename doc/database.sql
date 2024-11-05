@@ -1,12 +1,5 @@
-CREATE TABLE `account` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `pass` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `account_user_FK` (`user_id`),
-  CONSTRAINT `account_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `isscues.check_list` (
+
+CREATE TABLE `isscues.check-list` (
   `id` int NOT NULL AUTO_INCREMENT,
   `checked` tinyint(1) NOT NULL DEFAULT '0',
   `name` text NOT NULL,
@@ -15,6 +8,7 @@ CREATE TABLE `isscues.check_list` (
   KEY `isscues_check_list_issues_FK` (`isscues_id`),
   CONSTRAINT `isscues_check_list_issues_FK` FOREIGN KEY (`isscues_id`) REFERENCES `issues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `isscues.comment` (
   `id` int NOT NULL AUTO_INCREMENT,
   `value` text NOT NULL,
@@ -29,16 +23,19 @@ CREATE TABLE `isscues.comment` (
   CONSTRAINT `isscues_comment_issues_FK` FOREIGN KEY (`issuces_id`) REFERENCES `issues` (`id`),
   CONSTRAINT `isscues_comment_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `issuces.priority` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `issuces.status` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `issues` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -67,6 +64,7 @@ CREATE TABLE `issues` (
   CONSTRAINT `issues_project_FK` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `issues_user_FK` FOREIGN KEY (`assignee`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `issues.note` (
   `id` int NOT NULL AUTO_INCREMENT,
   `issues_id` int NOT NULL,
@@ -75,23 +73,13 @@ CREATE TABLE `issues.note` (
   KEY `issues_note_issues_FK` (`issues_id`),
   CONSTRAINT `issues_note_issues_FK` FOREIGN KEY (`issues_id`) REFERENCES `issues` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `issues.tracker` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-DROP TABLE IF EXISTS `pemistion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pemistion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `type` int NOT NULL COMMENT '1|2|3|4<>read|write|create|delete',
-  `code` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-DROP TABLE IF EXISTS `project`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `project` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -103,9 +91,7 @@ CREATE TABLE `project` (
   KEY `project_project_FK` (`parent_id`),
   CONSTRAINT `project_project_FK` FOREIGN KEY (`parent_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-DROP TABLE IF EXISTS `project.member`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `project.member` (
   `id` int NOT NULL AUTO_INCREMENT,
   `project_id` int NOT NULL,
@@ -116,10 +102,8 @@ CREATE TABLE `project.member` (
   CONSTRAINT `project_member_project_FK` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `project_member_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-DROP TABLE IF EXISTS `project.member_project.role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project.member_project.role` (
+
+CREATE TABLE `project.member-role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `member_id` int NOT NULL,
   `role_id` int NOT NULL,
@@ -129,6 +113,7 @@ CREATE TABLE `project.member_project.role` (
   CONSTRAINT `project_member_project_role_project_member_FK` FOREIGN KEY (`member_id`) REFERENCES `project.member` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `project_member_project_role_project_role_FK` FOREIGN KEY (`role_id`) REFERENCES `project.role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `project.role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `project_id` int NOT NULL,
@@ -137,33 +122,54 @@ CREATE TABLE `project.role` (
   KEY `project_role_project_FK` (`project_id`),
   CONSTRAINT `project_role_project_FK` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `role` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `role_ppemistion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `role_id` int NOT NULL,
-  `pemistion_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `role_ppemistion_role_FK` (`role_id`),
-  KEY `role_ppemistion_pemistion_FK` (`pemistion_id`),
-  CONSTRAINT `role_ppemistion_pemistion_FK` FOREIGN KEY (`pemistion_id`) REFERENCES `pemistion` (`id`),
-  CONSTRAINT `role_ppemistion_role_FK` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `user_role` (
+
+CREATE TABLE `user.account` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `pass` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_user_FK` (`user_id`),
+  CONSTRAINT `account_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user.permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` int NOT NULL COMMENT '1|2|3|4<>read|write|create|delete',
+  `code` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user.role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user.role-permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int NOT NULL,
+  `pemistion_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_ppemistion_role_FK` (`role_id`),
+  KEY `role_ppemistion_pemistion_FK` (`pemistion_id`),
+  CONSTRAINT `role_ppemistion_pemistion_FK` FOREIGN KEY (`pemistion_id`) REFERENCES `user.permission` (`id`),
+  CONSTRAINT `role_ppemistion_role_FK` FOREIGN KEY (`role_id`) REFERENCES `user.role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user.user-role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `role_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_role_role_FK` (`user_id`),
-  CONSTRAINT `user_role_role_FK` FOREIGN KEY (`user_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_role_role_FK` FOREIGN KEY (`user_id`) REFERENCES `user.role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_role_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+

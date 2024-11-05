@@ -6,12 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon  src/api/server.js",
-    "build": "babel src/api -d build"
+    "build": "babel src/api -d build",
+    "createDB": "node src/api/config/create_models.js"
   },
-  
   "author": "leetrunghaau",
   "license": "ISC",
-  
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -35,6 +34,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^9.1.3",
     "nodemon": "^3.0.1",
+    "sequelize-auto": "^0.8.8",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   }

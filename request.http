@@ -1,0 +1,62 @@
+### test
+GET http://localhost:8080/api/v1/syn_db
+### đăng ký
+POST http://localhost:8080/api/v1/sign/up
+Content-Type: application/json
+
+{
+    "name":"Lê Trung Hậu",
+    "userName":"leetrunghaau1",
+    "email":"leetrunghaau1@gmail.com",
+    "pass":"123456"
+}
+### đăng nhập
+POST http://localhost:8080/api/v1/sign/in
+Content-Type: application/json
+
+{
+    "user":"leetrunghaau@gmail.com",
+    "pass":"123456"
+}
+### user (admin) 
+### get
+GET http://localhost:8080/api/v1/user/4
+### gets
+GET http://localhost:8080/api/v1/users
+### create
+POST GET http://localhost:8080/api/v1/user
+Content-Type: application/json
+Authorization: 
+
+{
+    
+}
+### edit
+### delete
+
+
+### info 
+GET http://localhost:8080/api/v1/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE3MzA3MzgzNjUsImV4cCI6MTczMjAzNDM2NX0.jOUFvAZw8j6G8rp5OJLerKfERzVd69yLkeshlBQ_0oE
+### update info
+PUT  http://localhost:8080/api/v1/info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE3MzA3MzgzNjUsImV4cCI6MTczMjAzNDM2NX0.jOUFvAZw8j6G8rp5OJLerKfERzVd69yLkeshlBQ_0oE
+
+{
+    "name": "Lê Trung Hậuu",
+    "userName": "leetrunghaau",
+    "email": "leetrunghaau@gmail.com",
+    "gender": "nam",
+    "admin": false
+}
+### update info
+PUT  http://localhost:8080/api/v1/info/change-pass
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE3MzA3MzgzNjUsImV4cCI6MTczMjAzNDM2NX0.jOUFvAZw8j6G8rp5OJLerKfERzVd69yLkeshlBQ_0oE
+
+{
+    "oldPass":"1234567",
+    "newPass":"123456"
+}
+
