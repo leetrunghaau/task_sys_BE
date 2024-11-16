@@ -34,7 +34,7 @@ const authorization = (admin, permission = null) => {
             if (permission) { // niếu có phân quyền thì xử lý phân quyền
 
                 // kiểm tra người dùng có tham gia dự án chưa
-                const memberRoles = await MemberRoleService.readsByPojectUser(req.params.pId, user.id)
+                const memberRoles = await MemberRoleService.readsByProjectUser(req.params.pId, user.id)
                 console.log("check permission =============================\nmemberRoles", memberRoles)
                 if (memberRoles.length <= 0) { 
                     return next(createError.Forbidden("Bạn không có quyền nào trong dự án này ! "))

@@ -1,12 +1,12 @@
 const { resOk } = require("../helpers/utils");
-const PriorityService = require("../services/issues.priority");
 const createError = require('http-errors');
 const MemberService = require("../services/project.member");
 const UserService = require("../services/user");
+const MemberRoleService = require("../services/project.member-role");
 
 const get = async (req, res, next) => {
     try {
-        const data = await PriorityService.read(req.params.id);
+        const data = await MemberService.read(req.params.id)
         if (!data) {
             return next(createError.BadRequest())
         }
@@ -15,10 +15,11 @@ const get = async (req, res, next) => {
         console.log(error);
         return next(createError.InternalServerError());
     }
-}
+};
 const getsByProject = async (req, res, next) => {
     try {
-        const data = await PriorityService.readsByProjectId(req.params.id)
+        // const data =  await MemberRoleService.readsByProject(req.params.pId)
+        const data = await MemberService.readsByProject(req.params.pId)
         if (!data) {
             return next(createError.BadRequest())
         }
@@ -35,7 +36,7 @@ const create = async (req, res, next) => {
         if (!user){
             return next(createError.BadRequest("not user"))
         }
-        const member = await MemberService.readByProjectMember(req.params.pId, req.body.userId)
+        const member = await MemberService.readByProjectUser(req.params.pId, req.body.userId)
         if (member){
             return next(createError.BadRequest('user in project'))
         }

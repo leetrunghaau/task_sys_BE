@@ -4,6 +4,9 @@ class RolePermissionService {
     static async read(id) {
         return await RolePermission.findOne({ where: { id: id } }) || null
     }
+    static async readByRolePermission(roleId, permissionId) {
+        return await RolePermission.findOne({ where: { roleId: roleId, permissionId: permissionId } }) || null
+    }
     static async reads() {
         return await RolePermission.findAll() || null
     }

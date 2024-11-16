@@ -9,6 +9,11 @@ const priority = require('./priority')
 const status = require('./status')
 const tracker = require('./tracker')
 const project = require('./project')
+const role = require('./role')
+const member = require('./member')
+const memberRole = require('./member-role')
+const permission = require('./permission')
+
 
 router.use(syn_db)
 router.use(check)
@@ -19,5 +24,9 @@ router.use(priority)
 router.use(status)
 router.use(tracker)
 router.use(project)
+router.use(role)
+router.use(member)
+router.use(memberRole)
+router.use(permission)
 
 module.exports = router;

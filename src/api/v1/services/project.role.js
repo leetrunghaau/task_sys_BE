@@ -3,6 +3,9 @@ class ProjectRoleService {
     static async read(id) {
         return await ProjectRole.findOne({ where: { id: id } }) || null
     }
+    static async readByIdProject (id, projectId) {
+        return await ProjectRole.findOne({ where: { id: id , projectId: projectId} }) || null
+    }
     static async reads() {
         return await ProjectRole.findAll() || null
     }
