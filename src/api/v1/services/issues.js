@@ -6,6 +6,9 @@ class IssuesService {
     static async reads() {
         return await Issues.findAll() || null
     }
+    static async readsQuery(query) {
+        return await Issues.findAll({where: query}) || null
+    }
     static async readsByProject(id) {
         return await Issues.findAll({ where: { projectId: id } }) || null
     }

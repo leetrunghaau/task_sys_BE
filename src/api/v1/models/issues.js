@@ -25,12 +25,12 @@ const Issues = db.define('Issues', {
     },
     trackerId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         field: 'tracker_id'
     },
     priorityId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         field: 'priority_id'
     },
     assignee: {
@@ -40,7 +40,7 @@ const Issues = db.define('Issues', {
     },
     createBy: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         field: 'create_by'
     },
     created: {
@@ -88,7 +88,7 @@ Issues.belongsTo(Priority, { foreignKey: 'priorityId', targetKey: 'id', onDelete
 Issues.belongsTo(Status, { foreignKey: 'statusId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 Issues.belongsTo(Tracker, { foreignKey: 'trackerId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 Issues.belongsTo(Project, { foreignKey: 'projectId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-Issues.belongsTo(User, { foreignKey: 'assignee', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-Issues.belongsTo(User, { foreignKey: 'createBy', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Issues.belongsTo(User, { as: "Assignee", foreignKey: 'assignee', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Issues.belongsTo(User, { as: "Owner", foreignKey: 'createBy', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 Issues.belongsTo(Issues, { foreignKey: 'parentId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 module.exports = Issues;

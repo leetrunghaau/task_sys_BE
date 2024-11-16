@@ -1,0 +1,41 @@
+### gets by project id
+GET   http://localhost:8080/api/v1/project/9/issuess
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+
+### create
+POST http://localhost:8080/api/v1/project/9/issues
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Content-Type: application/json
+
+{
+    "name": "công việc 2",
+    "statusId": null,
+    "trackerId": null,
+    "priorityId": null,
+    "assignee": null,
+    "start": null,
+    "end": null,
+    "updated": null,
+    "parentId": null
+}
+
+### update
+PUT http://localhost:8080/api/v1/project/9/issues/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Content-Type: application/json
+
+{
+    "name": "công việc 2",
+    "statusId": null,
+    "trackerId": null,
+    "priorityId": null,
+    "assignee": null,
+    "start": null,
+    "end": null,
+    "updated": null,
+    "parentId": 1
+}
+
+### delete 
+DELETE  http://localhost:8080/api/v1/project/9/issues/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
