@@ -13,6 +13,8 @@ const ProjectRoleService = require('../services/project.role');
 const AccountService = require('../services/user.account');
 const UserService = require('../services/user');
 const { resOk } = require('../helpers/utils');
+const PermissionService = require('../services/project.permission');
+const RolePermissionService = require('../services/project.role-permission');
 const router = express.Router();
 
 
@@ -34,7 +36,9 @@ router.get('/syn_db', async (req, res) => {
                     await MemberRoleService.reads(),
                     await ProjectRoleService.reads(),
                     await AccountService.reads(),
-                    await UserService.reads()
+                    await UserService.reads(),
+                    await PermissionService.reads(),
+                    await RolePermissionService.reads()
                 ]
         }
     )

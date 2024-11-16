@@ -6,9 +6,11 @@ const checkUserName = async (req, res, next) => {
     try {
         const checkUserName = await UserService.readByUserName(req.body.userName);
         if (checkUserName) {
-            resOk(res, true);
+            resOk(res, true, "User name đã được đăng ký");
+        }else{
+
+            resOk(res, false, "User name chưa được đăng ký");
         }
-        resOk(res, false);
     } catch (error) {
         console.log(error);
         return next(createError.InternalServerError());
@@ -18,10 +20,11 @@ const checkEmail = async (req, res, next) => {
     try {
         const checkEmail = await UserService.readByEmail(req.body.email);
         if (checkEmail) {
+            resOk(res, true, "Email đã được đăng ký");
+        }else{
 
-            resOk(res, true);
+            resOk(res, false, "Email chưa được đăng ký");
         }
-        resOk(res, false);
 
     } catch (error) {
         console.log(error);

@@ -6,6 +6,9 @@ class ProjectService {
     static async reads() {
         return await Project.findAll() || null
     }
+    static async readsByIds(ids) {
+        return await Project.findAll({ where: { id: ids } }) || null
+    }
     static async create(data) {
         return await Project.create(data) || null;
     }

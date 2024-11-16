@@ -1,0 +1,45 @@
+
+### đăng ký
+POST http://localhost:8080/api/v1/sign/up
+Content-Type: application/json
+
+{
+    "name": "acc for admin",
+    "userName": "adminAcc",
+    "email": "adminAcc@gmail.com",
+    "pass":"123456"
+}
+### đăng nhập
+POST http://localhost:8080/api/v1/sign/in
+Content-Type: application/json
+
+{
+    "user":"adminAcc@gmail.com",
+    "pass":"123456"
+}
+
+### info ========================================================== 
+GET http://localhost:8080/api/v1/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+
+### update info
+PUT  http://localhost:8080/api/v1/info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+
+{
+    "name": "acc for user",
+    "userName": "userAcc",
+    "email": "userAcc@gmail.com",
+    "gender": "nam"
+}
+### change pass
+PUT  http://localhost:8080/api/v1/info/change-pass
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+
+{
+    "oldPass":"1234567",
+    "newPass":"123456"
+}
+

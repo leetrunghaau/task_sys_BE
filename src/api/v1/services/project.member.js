@@ -3,8 +3,25 @@ class MemberService {
     static async read(id) {
         return await Member.findOne({ where: { id: id } }) || null
     }
+    static async readByProjectMember(projectId, memberID) {
+        return await Member.findOne({ where: { projectId: projectId, userId: memberID } }) || null
+    }
     static async reads() {
         return await Member.findAll() || null
+    }
+    static async readsByUser(userId) {
+        return await Member.findAll({ where: { userId: userId } }) || null
+    }
+    static async readsByProject(id) {
+        return await Member.findAll({ where: { projectId: id } }) || null
+    }
+    static async readByProjectUser(projectId, userId) {
+        return await Member.findOne({
+            where: {
+                userId: userId,
+                projectId: projectId
+            }
+        }) || null
     }
     static async create(data) {
         return await Member.create(data) || null;

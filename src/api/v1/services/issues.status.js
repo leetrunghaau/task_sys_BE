@@ -6,8 +6,14 @@ class StatusService {
     static async reads() {
         return await Status.findAll() || null
     }
+    static async readsByProject(id) {
+        return await Status.findAll({ where: { projectId: id } }) || null
+    }
     static async create(data) {
         return await Status.create(data) || null;
+    }
+    static async creates(data) {
+        return await Status.bulkCreate(data) || null;
     }
     static async update(id, data) {
         await Status.update(data, { where: { id: id } }) || null;

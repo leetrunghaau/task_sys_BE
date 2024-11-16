@@ -4,5 +4,5 @@ const { checkEmail, checkUserName } = require('../controllers/check');
 const router = express.Router();
 
 router.post('/check/email', checkEmail)
-router.post('check/user-name', checkUserName)
+router.post('/check/user-name', checkUserName)
 module.exports = router

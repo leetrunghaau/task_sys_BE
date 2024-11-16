@@ -6,8 +6,14 @@ class PriorityService {
     static async reads() {
         return await Priority.findAll() || null
     }
+    static async readsByProject(id) {
+        return await Priority.findAll({ where: { projectId: id } }) || null
+    }
     static async create(data) {
         return await Priority.create(data) || null;
+    }
+    static async creates(data) {
+        return await Priority.bulkCreate(data) || null;
     }
     static async update(id, data) {
         await Priority.update(data, { where: { id: id } }) || null;

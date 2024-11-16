@@ -8,6 +8,7 @@ const info = require('./info')
 const priority = require('./priority')
 const status = require('./status')
 const tracker = require('./tracker')
+const project = require('./project')
 
 router.use(syn_db)
 router.use(check)
@@ -17,5 +18,6 @@ router.use(info)
 router.use(priority)
 router.use(status)
 router.use(tracker)
+router.use(project)
 
 module.exports = router;

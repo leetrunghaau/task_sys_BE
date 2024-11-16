@@ -1,0 +1,49 @@
+
+
+### user ========================================================
+### get
+GET http://localhost:8080/api/v1/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+
+### gets
+GET http://localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+
+###
+POST http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Content-Type: application/json
+
+{
+    "name": "user acc",
+    "userName": "userAcc",
+    "email": "userAcc@gmail.com",
+    "pass": "12345",
+    "gender": null,
+    "admin": true 
+}
+### edit
+PUT  http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Content-Type: application/json
+
+{
+    "id": 4,
+    "name": "Lê Trung Hậu",
+    "userName": "leetrunghaau1",
+    "email": "leetrunghaaus@gmail.com",
+    "gender": null,
+    "admin": true 
+}
+### reset pass cho user
+PUT  http://localhost:8080/api/v1/user/reset-pass/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Content-Type: application/json
+
+{
+    "pass": "12345"
+}
+
+### delete
+DELETE http://localhost:8080/api/v1/user/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzU2MSwiZXhwIjoxNzMzMDMzNTYxfQ.hCeHxUMkABhR_q1hDWFfLneSaUMsG0kQDzdJF8fYp24

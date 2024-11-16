@@ -10,7 +10,7 @@ const AccountService = require("../services/user.account");
 
 const signIn = async (req, res, next) => {
     try {
-
+       
         let user = null;
         if (isValidEmail(req.body.user)) {
             user = await UserService.readByEmail(req.body.user);
@@ -20,7 +20,7 @@ const signIn = async (req, res, next) => {
         if (!user) {
             return next(createError.BadRequest('user not found'));
         }
-        const acc = await AccountService.read(user.id);
+        const acc = await AccountService.readByUserId(user.id);
         if (!acc) {
             return next(createError.BadRequest('Account not found'));
         }

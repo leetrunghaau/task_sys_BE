@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { Op } = require('sequelize');
 class UserService {
     static async read(id) {
         return await User.findOne({ where: { id: id } }) || null
@@ -8,6 +9,12 @@ class UserService {
     }
     static async readByUserName(userName) {
         return await User.findOne({ where: { userName: userName } }) || null
+    }
+    static async readsByUserName(userName) {
+        return await User.findAll({
+            where: { userName: { [Op.like]: `${userName}%` } },
+            attributes: ["id", "name", "userName", "email"]
+        }) || null
     }
     static async reads() {
         return await User.findAll() || null

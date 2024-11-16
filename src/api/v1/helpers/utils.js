@@ -9,6 +9,7 @@ const resOk = (res, data = null, mess = 'Ok') =>{
         data: data
     });
 }
+
 module.exports = {
     isValidEmail,
     resOk

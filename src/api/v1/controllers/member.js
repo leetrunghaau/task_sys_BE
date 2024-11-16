@@ -1,10 +1,24 @@
 const { resOk } = require("../helpers/utils");
-const TrackerService = require("../services/issues.tracker");
+const PriorityService = require("../services/issues.priority");
 const createError = require('http-errors');
+const MemberService = require("../services/project.member");
+const UserService = require("../services/user");
 
+const get = async (req, res, next) => {
+    try {
+        const data = await PriorityService.read(req.params.id);
+        if (!data) {
+            return next(createError.BadRequest())
+        }
+        resOk(res, data)
+    } catch (error) {
+        console.log(error);
+        return next(createError.InternalServerError());
+    }
+}
 const getsByProject = async (req, res, next) => {
     try {
-        const data = await TrackerService.readsByProject(req.params.pId)
+        const data = await PriorityService.readsByProjectId(req.params.id)
         if (!data) {
             return next(createError.BadRequest())
         }
@@ -16,20 +30,19 @@ const getsByProject = async (req, res, next) => {
 };
 const create = async (req, res, next) => {
     try {
-        req.body.projectId = req.params.pId
-        const data = await TrackerService.create(req.body)
-        if (!data) {
-            return next(createError.BadRequest())
+        //check user in project
+        const user = await UserService.read(req.body.userId)
+        if (!user){
+            return next(createError.BadRequest("not user"))
         }
-        resOk(res, data)
-    } catch (error) {
-        console.log(error);
-        return next(createError.InternalServerError());
-    }
-};
-const update = async (req, res, next) => {
-    try {
-        const data = await TrackerService.update(req.params.id, {name: req.body.name ?? ""});
+        const member = await MemberService.readByProjectMember(req.params.pId, req.body.userId)
+        if (member){
+            return next(createError.BadRequest('user in project'))
+        }
+        const data = await MemberService.create({
+            projectId: req.params.pId,
+            userId: req.body.userId
+        })
         if (!data) {
             return next(createError.BadRequest())
         }
@@ -40,9 +53,10 @@ const update = async (req, res, next) => {
     }
 };
 
+
 const del = async (req, res, next) => {
     try {
-        const data = await TrackerService.delete(req.params.id)
+        const data = await MemberService.delete(req.params.id)
         if (data <= 0) {
             return next(createError.BadRequest())
         }
@@ -52,9 +66,10 @@ const del = async (req, res, next) => {
         return next(createError.InternalServerError());
     }
 };
+
 module.exports = {
+    get,
     getsByProject,
-    create, 
-    update,
+    create,
     del
 }
