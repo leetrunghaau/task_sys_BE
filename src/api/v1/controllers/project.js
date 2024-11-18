@@ -56,6 +56,7 @@ const create = async (req, res, next) => {
     try {
         //create and tamplate
         //project
+        req.body.created = new Date()
         const project = await ProjectService.create(req.body)
         if (!project) {
             return next(createError.BadRequest())

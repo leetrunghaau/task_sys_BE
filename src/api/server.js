@@ -7,7 +7,7 @@ const app = express();
 dotenv.config();
 
 // List of allowed origins (CORS)
-const allowedOrigins = ["http://s.com", "http://h.com"];
+const allowedOrigins = ["http://localhost","http://s.com", "http://h.com"];
 
 // CORS options configuration
 const corsOptions = {
@@ -33,8 +33,8 @@ app.use(express.json());
 // Routes
 const apiRoutes = require('./v1/routes/index');
 const { errorMiddleware } = require('./v1/middlewares/error-middleweara');
-// app.use(cors());
-app.use('/api/v1', cors(), apiRoutes);
+app.use(cors(corsOptions));
+app.use('/api/v1', apiRoutes);
 
 // Error handling middleware
 app.use(errorMiddleware);

@@ -34,6 +34,10 @@ const Project = db.define('Project', {
         allowNull: false,
         defaultValue: 1,
         field: 'active'
+    },created: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        field: 'created'
     }
 }, {
     tableName: 'project',
