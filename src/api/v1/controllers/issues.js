@@ -8,7 +8,7 @@ const UserService = require("../services/user");
 
 const get = async (req, res, next) => {
     try {
-        const data = await IssuesService.readsByProject(req.params.id)
+        const data = await IssuesService.read(req.params.id)
         if (!data) {
             return next(createError.BadRequest())
         }
@@ -23,6 +23,9 @@ const gets = async (req, res, next) => {
         let query = {}
         if (req.query.assignee) { query.assignee = req.query.assignee }
         if (req.query.owner) { query.createBy = req.query.owner }
+        if (req.query.project){ query.priorityId  = req.query.project}
+        console.log("quyery ====:> ", query)
+        console.log("quyery1 ====:> ", req.query)
         const data = await IssuesService.readsQuery(query)
         if (!data) {
             return next(createError.BadRequest())
@@ -66,7 +69,11 @@ const create = async (req, res, next) => {
         }
         if (req.body.parentId) {
             const parent = await IssuesService.read(req.body.parentId)
-            if (!parent) { return next(createError.BadRequest('Issues không có trong dự án')) }
+            if (!parent) { return next(createError.BadRequest('Issues parent không có trong dự án')) }
+            if (parent.projectId != req.params.pId) {
+                return next(createError.BadRequest('Issues parent không cùng dự án'))
+            }
+            
         }
         req.body.projectId = req.params.pId
         req.body.created = new Date()
@@ -102,6 +109,9 @@ const update = async (req, res, next) => {
         if (req.body.parentId) {
             const parent = await IssuesService.read(req.body.parentId)
             if (!parent) { return next(createError.BadRequest('Issues không có trong dự án')) }
+            if (parent.projectId != req.params.pId) {
+                return next(createError.BadRequest('Issues parent không cùng dự án'))
+            }
         }
         const data = await IssuesService.update(req.params.id, req.body);
         if (!data) {
@@ -127,6 +137,8 @@ const del = async (req, res, next) => {
     }
 };
 module.exports = {
+    get,
+    gets,
     getsByProject,
     create,
     update,

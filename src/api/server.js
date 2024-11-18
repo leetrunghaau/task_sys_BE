@@ -15,14 +15,14 @@ const corsOptions = {
 
     // cách 1 thêm điều kiện niếu origin bằng undefined thì co nó pass luôn
     // ví dụ:
-    if ( allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true); 
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS')); 
+      callback(new Error('Not allowed by CORS'));
     }
   },
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  credentials: true 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
 
 // Use CORS middleware with the defined options
@@ -33,8 +33,8 @@ app.use(express.json());
 // Routes
 const apiRoutes = require('./v1/routes/index');
 const { errorMiddleware } = require('./v1/middlewares/error-middleweara');
-app.use(cors(corsOptions));
-app.use('/api/v1', apiRoutes);
+// app.use(cors());
+app.use('/api/v1', cors(), apiRoutes);
 
 // Error handling middleware
 app.use(errorMiddleware);

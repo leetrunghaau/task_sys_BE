@@ -1,13 +1,27 @@
 const Issues = require('../models/issues');
+const Priority = require('../models/issues.priority');
+const Status = require('../models/issues.status');
+const Tracker = require('../models/issues.tracker');
+const User = require('../models/user');
 class IssuesService {
     static async read(id) {
-        return await Issues.findOne({ where: { id: id } }) || null
+        return await Issues.findOne({
+            where: { id: id },
+            include: [
+                { model: Issues, as: "Parent" },
+                { model: Tracker },
+                { model: Priority },
+                { model: Status },
+                { model: User, as: "Assignee", attributes: ["name", "userName", "email"] },
+                { model: User, as: "Owner", attributes: ["name", "userName", "email"] }
+            ]
+        }) || null
     }
     static async reads() {
         return await Issues.findAll() || null
     }
     static async readsQuery(query) {
-        return await Issues.findAll({where: query}) || null
+        return await Issues.findAll({ where: query }) || null
     }
     static async readsByProject(id) {
         return await Issues.findAll({ where: { projectId: id } }) || null

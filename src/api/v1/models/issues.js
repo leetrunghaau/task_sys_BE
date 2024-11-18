@@ -90,5 +90,5 @@ Issues.belongsTo(Tracker, { foreignKey: 'trackerId', targetKey: 'id', onDelete: 
 Issues.belongsTo(Project, { foreignKey: 'projectId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 Issues.belongsTo(User, { as: "Assignee", foreignKey: 'assignee', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 Issues.belongsTo(User, { as: "Owner", foreignKey: 'createBy', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
-Issues.belongsTo(Issues, { foreignKey: 'parentId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Issues.belongsTo(Issues, { as: "Parent", foreignKey: 'parentId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 module.exports = Issues;

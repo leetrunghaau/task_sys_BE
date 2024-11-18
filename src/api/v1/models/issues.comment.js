@@ -29,7 +29,12 @@ const Comment = db.define('Comment', {
         type: DataTypes.INTEGER,
         allowNull: true,
         field: 'issues_id'
-    }
+    },
+    created: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        field: 'created'
+    },
 }, {
     tableName: 'issues.comment',
     timestamps: false
