@@ -16,7 +16,8 @@ class MemberRoleService {
         return await MemberRole.findAll({
             where: {
                 memberId: memberId
-            }
+            },
+            include:[{model:ProjectRole}]
         }) || null
     }
     static async readsByProjectUser(projectId, userId) {

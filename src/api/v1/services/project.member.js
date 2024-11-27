@@ -16,7 +16,10 @@ class MemberService {
         return await Member.findAll({ where: { userId: userId } }) || null
     }
     static async readsByProject(id) {
-        return await Member.findAll({ where: { projectId: id }, include:[{model: User}]}) || null
+        return await Member.findAll({
+            where: { projectId: id },
+            include: [{model: User, attributes:['id', 'name', 'userName', 'email']}]
+        }) || null
     }
     static async readByProjectUser(projectId, userId) {
         return await Member.findOne({

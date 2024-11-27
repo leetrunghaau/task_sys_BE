@@ -18,31 +18,33 @@ const get = async (req, res, next) => {
 };
 const getsByProject = async (req, res, next) => {
     try {
-        // const data =  await MemberRoleService.readsByProject(req.params.pId)
-        // const data = await MemberService.readsByProject(req.params.pId)
-        const data = await MemberRoleService.readsByProject(req.params.pId)
-
+        const data = await MemberService.readsByProject(req.params.pId);
         if (!data) {
-            return next(createError.BadRequest())
+            return next(createError.BadRequest('No members found for the given project.'));
         }
 
-        const groupedData = Object.values(data.reduce((acc, item) => {
-            const memberId = item.Member.id;
-            if (!acc[memberId]) {
-              acc[memberId] = {
-                memberId: item.Member.id,
-                userId: item.Member.userId,
-                name: item.Member.User.name,
-                userName: item.Member.User.userName,
-                roles: []
-              };
+        const memberIds = data.map(item => item.id);
+        const memberRole = await MemberRoleService.readsByMember(memberIds);
+        const rolesMap = new Map();
+        memberRole.forEach(roleItem => {
+            if (!rolesMap.has(roleItem.memberId)) {
+                rolesMap.set(roleItem.memberId, []);
             }
-            acc[memberId].roles.push(item.ProjectRole);
-          
-            return acc;
-          }, {}));
-
-        resOk(res, groupedData)
+            const item = {
+                id: roleItem.ProjectRole.id,
+                name: roleItem.ProjectRole.name
+            }
+            rolesMap.get(roleItem.memberId).push(item);
+        });
+        const rs = data.map((member) => {
+            const item = {
+                id: member.id,
+                User: member.User,
+                Roles: rolesMap.get(member.id) || []
+            }
+            return item
+        });
+        return resOk(res, rs)
 
     } catch (error) {
         console.log(error);
