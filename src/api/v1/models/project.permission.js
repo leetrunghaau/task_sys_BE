@@ -9,6 +9,11 @@ const Permission = db.define('Permission', {
     autoIncrement: true,
     field: 'id'
   },
+  group: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    field: 'group'
+  },
   name: {
     type: DataTypes.STRING(100),
     allowNull: false,

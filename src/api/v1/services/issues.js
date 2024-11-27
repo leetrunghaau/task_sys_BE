@@ -8,7 +8,7 @@ class IssuesService {
         return await Issues.findOne({
             where: { id: id },
             include: [
-                { model: Issues, as: "Parent" },
+                { model: Issues, as: "Chillrend" },
                 { model: Tracker },
                 { model: Priority },
                 { model: Status },
@@ -21,7 +21,16 @@ class IssuesService {
         return await Issues.findAll() || null
     }
     static async readsQuery(query) {
-        return await Issues.findAll({ where: query }) || null
+        return await Issues.findAll({ 
+            where: query ,
+            include: [
+            { model: Issues, as: "Chillrend" },
+            { model: Tracker },
+            { model: Priority },
+            { model: Status },
+            { model: User, as: "Assignee", attributes: ["name", "userName", "email"] },
+            { model: User, as: "Owner", attributes: ["name", "userName", "email"] }
+        ]}) || null
     }
     static async readsByProject(id) {
         return await Issues.findAll({ where: { projectId: id } }) || null

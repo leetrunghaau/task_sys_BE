@@ -14,6 +14,9 @@ const member = require('./member')
 const memberRole = require('./member-role')
 const permission = require('./permission')
 const issues = require('./issues')
+const note = require('./note')
+const checkList = require('./check-list')
+const comment = require('./comment')
 
 
 router.use(syn_db)
@@ -30,5 +33,8 @@ router.use(member)
 router.use(memberRole)
 router.use(permission)
 router.use(issues)
+router.use(note)
+router.use(checkList)
+router.use(comment)
 
 module.exports = router;

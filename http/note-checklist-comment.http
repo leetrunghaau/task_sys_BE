@@ -1,0 +1,98 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+####
+POST http://localhost:8080/api/v1/project/4/issues/3/note
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content":"abc"
+}
+####
+POST http://localhost:8080/api/v1/project/4/issues/3/notes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+[
+    {
+        "content":"hôm nay làm gì"
+    },
+    {
+        "content":"nagyf mai làm gì"
+    },
+    {
+        "content":"ngày mốt làm gì"
+    }
+]
+###
+PUT  http://localhost:8080/api/v1/project/4/issues/3/note/8
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content":"abc"
+}
+###
+DELETE   http://localhost:8080/api/v1/project/4/issues/3/note/5
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "content":"abc"
+}
+###################################
+POST http://localhost:8080/api/v1/project/4/issues/3/check-list
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name":"abc",
+    "checked":true
+}
+####
+POST http://localhost:8080/api/v1/project/4/issues/3/check-lists
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+[
+    {
+        "name":"hôm nay làm gì"
+    },
+    {
+        "name":"nagyf mai làm gì"
+    },
+    {
+        "name":"ngày mốt làm gì"
+    }
+]
+###
+PUT  http://localhost:8080/api/v1/project/4/issues/3/check-list/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name":"ok",
+    "checked":true
+}
+###
+DELETE   http://localhost:8080/api/v1/project/4/issues/3/check-list/5
+Authorization: Bearer {{token}}
+###
+POST http://localhost:8080/api/v1/project/4/issues/3/comment
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "value":"dễ",
+    "parentId":6
+}
+###
+PUT  http://localhost:8080/api/v1/project/4/issues/3/comment/4
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "value":"ok"
+}
+###
+DELETE   http://localhost:8080/api/v1/project/4/issues/3/comment/5
+Authorization: Bearer {{token}}

@@ -43,6 +43,6 @@ const Project = db.define('Project', {
     tableName: 'project',
     timestamps: false
 });
-Project.belongsTo(Project, { foreignKey: 'parentId', targetKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
+Project.hasMany(Project, {as: 'Chillrend', foreignKey: 'parentId', sourceKey: 'id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 module.exports = Project;

@@ -1,17 +1,18 @@
 
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
 
 ### user ========================================================
 ### get
-GET http://localhost:8080/api/v1/user/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+GET http://localhost:8080/api/v1/user/3
+Authorization: Bearer {{token}}
 
 ### gets
 GET http://localhost:8080/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 
 ###
 POST http://localhost:8080/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -23,12 +24,11 @@ Content-Type: application/json
     "admin": true 
 }
 ### edit
-PUT  http://localhost:8080/api/v1/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+PUT  http://localhost:8080/api/v1/user/1
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "id": 4,
     "name": "Lê Trung Hậu",
     "userName": "leetrunghaau1",
     "email": "leetrunghaaus@gmail.com",
@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 ### reset pass cho user
 PUT  http://localhost:8080/api/v1/user/reset-pass/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -46,4 +46,4 @@ Content-Type: application/json
 
 ### delete
 DELETE http://localhost:8080/api/v1/user/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzU2MSwiZXhwIjoxNzMzMDMzNTYxfQ.hCeHxUMkABhR_q1hDWFfLneSaUMsG0kQDzdJF8fYp24
+Authorization: Bearer {{token}}

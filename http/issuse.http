@@ -1,14 +1,18 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
 
 ### gets id
-GET   http://localhost:8080/api/v1/project/9/issues/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+GET   http://localhost:8080/api/v1/project/4/issues/1
+Authorization: Bearer {{token}}
 ### gets by project id
-GET   http://localhost:8080/api/v1/project/9/issuess
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+GET   http://localhost:8080/api/v1/issuess
+Authorization: Bearer {{token}}
+### gets by project id
+GET   http://localhost:8080/api/v1/issuess?owner=4
+Authorization: Bearer {{token}}
 
 ### create
-POST http://localhost:8080/api/v1/project/9/issues
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+POST http://localhost:8080/api/v1/project/4/issues
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -24,8 +28,8 @@ Content-Type: application/json
 }
 
 ### update
-PUT http://localhost:8080/api/v1/project/9/issues/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+PUT http://localhost:8080/api/v1/project/4/issues/1
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -39,10 +43,45 @@ Content-Type: application/json
     "updated": null,
     "parentId": 1
 }
+### update
+PUT http://localhost:8080/api/v1/project/4/issues/1/content
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "công việc 2",
+    "trackerId": 10,
+    "priorityId": 10,
+    "parentId": 2
+}
+### update
+PUT http://localhost:8080/api/v1/project/4/issues/1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "statusId": 10
+}
+### update
+PUT http://localhost:8080/api/v1/project/4/issues/1/assignee
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId":2
+}
+###
+PUT http://localhost:8080/api/v1/project/4/issues/1/due
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "start":"2024-11-27",
+    "end":"2024-11-29"
+}
 
 ### delete 
-DELETE  http://localhost:8080/api/v1/project/9/issues/9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+DELETE  http://localhost:8080/api/v1/project/4/issues/2
+Authorization: Bearer {{token}}
 
 ####
-GET   http://localhost:8080/api/v1/issuess?project=9&hdu@sgu

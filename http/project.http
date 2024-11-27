@@ -1,18 +1,20 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+@projectID=1
 ### project
-GET http://localhost:8080/api/v1/project/9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+GET http://localhost:8080/api/v1/project/1
+Authorization: Bearer {{token}}
 
 ### gets
 GET http://localhost:8080/api/v1/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTczMTc0NjYzNCwiZXhwIjoxNzMzMDQyNjM0fQ.8tbUjNJmHXguU_U2Pbiz_YasvVuzFlw4FTo4v-EduCI
+Authorization: Bearer {{token}}
 
 ### create
 POST http://localhost:8080/api/v1/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "name": "dự án 1",
+    "name": "dự án 5",
     "description": "mô tat dự án 1",
     "parentId": null,
     "public": 1,
@@ -21,7 +23,7 @@ Content-Type: application/json
 
 ### update
 PUT http://localhost:8080/api/v1/project/9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -33,15 +35,15 @@ Content-Type: application/json
 }
 ### delete
 DELETE http://localhost:8080/api/v1/project/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTU0MzI3NiwiZXhwIjoxNzMyODM5Mjc2fQ.RdSyH0MJEuQnzmItj-jBJtTwe_P71JvL1vWXksJeoqI
+Authorization: Bearer {{token}}
 
 ### tracker =======================================================================================================
-GET   http://localhost:8080/api/v1/project/9/trackers
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+GET   http://localhost:8080/api/v1/project/{{projectID}}/trackers
+Authorization: Bearer {{token}}
 
 ### create
 POST   http://localhost:8080/api/v1/project/9/tracker
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -49,7 +51,7 @@ Content-Type: application/json
 }
 ### edit
 PUT   http://localhost:8080/api/v1/project/9/tracker/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -58,15 +60,15 @@ Content-Type: application/json
 
 ### delete 
 DELETE  http://localhost:8080/api/v1/project/9/tracker/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### Priority =======================================================================================================
 GET   http://localhost:8080/api/v1/project/9/priorities 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### create
 POST   http://localhost:8080/api/v1/project/9/priority
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -74,7 +76,7 @@ Content-Type: application/json
 }
 ### edit
 PUT   http://localhost:8080/api/v1/project/9/priority/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -83,15 +85,15 @@ Content-Type: application/json
 
 ### delete 
 DELETE  http://localhost:8080/api/v1/project/9/priority/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### status =======================================================================================================
 GET   http://localhost:8080/api/v1/project/9/statuses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### create
 POST   http://localhost:8080/api/v1/project/9/status
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -99,7 +101,7 @@ Content-Type: application/json
 }
 ### edit
 PUT   http://localhost:8080/api/v1/project/9/status/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -108,4 +110,4 @@ Content-Type: application/json
 
 ### delete 
 DELETE  http://localhost:8080/api/v1/project/9/status/31
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}

@@ -1,10 +1,12 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+
 ### quản lý các role của 1 dự án
 GET   http://localhost:8080/api/v1/project/9/roles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### create
 POST   http://localhost:8080/api/v1/project/9/role
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -12,7 +14,7 @@ Content-Type: application/json
 }
 ### edit
 PUT   http://localhost:8080/api/v1/project/9/role/12
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -21,7 +23,7 @@ Content-Type: application/json
 
 ### delete 
 DELETE  http://localhost:8080/api/v1/project/9/role/12
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ##################################################################################
 ##################################################################################
@@ -33,7 +35,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhd
 GET  http://localhost:8080/api/v1/permissions
 ###  cấp quyền 
 POST http://localhost:8080/api/v1/project/9/role/1d1/permission
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -41,7 +43,7 @@ Content-Type: application/json
 }
 ### bỏ quyền 
 DELETE  http://localhost:8080/api/v1/project/9/role/12/permission/7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ##################################################################################
 ##################################################################################
@@ -51,20 +53,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhd
 ### quản lý các thành viên của 1 dự án  
 
 GET http://localhost:8080/api/v1/project/9/members
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ### add member 
-POST  http://localhost:8080/api/v1/project/9/member
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+POST  http://localhost:8080/api/v1/project/4/member
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "userId": 7
+    "userId": 2
 }
 
 ### delete member 
 DELETE   http://localhost:8080/api/v1/project/9/member/11
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 ##################################################################################
 ##################################################################################
@@ -73,7 +75,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhd
 ##################################################################################
 ###  cấp quyền cho member của dự án
 POST http://localhost:8080/api/v1/project/9/member/12/role
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -81,7 +83,7 @@ Content-Type: application/json
 }
 ### bỏ quyền cho user
 DELETE  http://localhost:8080/api/v1/project/9/member/6/role/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTczMTc0MjcyMywiZXhwIjoxNzMzMDM4NzIzfQ.UB8Tbj0ZJmnV2rPHJWXx74ESc0GC-it86Jo4UVWjRJE
+Authorization: Bearer {{token}}
 
 
 

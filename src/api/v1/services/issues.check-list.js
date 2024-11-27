@@ -6,8 +6,14 @@ class CheckListService {
     static async reads() {
         return await CheckList.findAll() || null
     }
+    static async readsByIssue(issuesId) {
+        return await CheckList.findAll({ where: { issuesId: issuesId } }) || null
+    }
     static async create(data) {
         return await CheckList.create(data) || null;
+    }
+    static async creates(data) {
+        return await CheckList.bulkCreate(data);
     }
     static async update(id, data) {
         await CheckList.update(data, { where: { id: id } }) || null;

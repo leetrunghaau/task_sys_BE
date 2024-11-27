@@ -4,10 +4,10 @@ class ProjectService {
         return await Project.findOne({ where: { id: id } }) || null
     }
     static async reads() {
-        return await Project.findAll() || null
+        return await Project.findAll({ include: [{ model: Project, as: 'Chillrend' }] }) || null
     }
     static async readsByIds(ids) {
-        return await Project.findAll({ where: { id: ids } }) || null
+        return await Project.findAll({ where: { id: ids },include: [{ model: Project, as: 'Chillrend' }]  }) || null
     }
     static async create(data) {
         return await Project.create(data) || null;

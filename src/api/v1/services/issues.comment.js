@@ -4,7 +4,10 @@ class CommentService {
         return await Comment.findOne({ where: { id: id } }) || null
     }
     static async reads() {
-        return await Comment.findAll() || null
+        return await Comment.findAll({ include: [{ model: Comment, as: 'Chillrend'}] }) || null
+    }
+    static async readsByIssue(issuesId) {
+        return await Comment.findAll({ where: { issuesId: issuesId }, include: [{ model: Comment, as: 'Chillrend'}] }) || null
     }
     static async create(data) {
         return await Comment.create(data) || null;

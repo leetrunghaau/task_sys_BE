@@ -17,6 +17,7 @@ sequelize
     console.error('Unable to connect to the database:', error);
   });
 
+
 // Đồng bộ hóa model với cơ sở dữ liệu
 // sequelize.sync()
 //   .then(() => {

@@ -1,12 +1,12 @@
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
 ### đăng ký
 POST http://localhost:8080/api/v1/sign/up
 Content-Type: application/json
 
 {
-    "name": "acc for admin",
-    "userName": "adminAcc",
-    "email": "adminAcc@gmail.com",
+    "name": "acc for user2",
+    "userName": "user2Acc",
+    "email": "user2Acc@gmail.com",
     "pass":"123456"
 }
 ### đăng nhập
@@ -14,18 +14,18 @@ POST http://localhost:8080/api/v1/sign/in
 Content-Type: application/json
 
 {
-    "user":"adminAcc@gmail.com",
-    "pass":"1234567"
+    "user":"leetrunghaau1",
+    "pass":"123456"
 }
 
 ### info ========================================================== 
 GET http://localhost:8080/api/v1/info
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 
 ### update info
 PUT  http://localhost:8080/api/v1/info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 
 {
     "name": "acc for user",
@@ -36,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhd
 ### change pass
 PUT  http://localhost:8080/api/v1/info/change-pass
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTczMTczNzY2MiwiZXhwIjoxNzMzMDMzNjYyfQ.p4gLqGbzT1U-xK9LKbDvHXVfjztJYZ8uiWpQCTqomrs
+Authorization: Bearer {{token}}
 
 {
     "oldPass":"1234567",
