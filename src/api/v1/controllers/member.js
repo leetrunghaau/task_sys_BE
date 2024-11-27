@@ -19,11 +19,31 @@ const get = async (req, res, next) => {
 const getsByProject = async (req, res, next) => {
     try {
         // const data =  await MemberRoleService.readsByProject(req.params.pId)
-        const data = await MemberService.readsByProject(req.params.pId)
+        // const data = await MemberService.readsByProject(req.params.pId)
+        const data = await MemberRoleService.readsByProject(req.params.pId)
+
         if (!data) {
             return next(createError.BadRequest())
         }
-        resOk(res, data)
+
+        const groupedData = Object.values(data.reduce((acc, item) => {
+            const memberId = item.Member.id;
+            if (!acc[memberId]) {
+              acc[memberId] = {
+                memberId: item.Member.id,
+                userId: item.Member.userId,
+                name: item.Member.User.name,
+                userName: item.Member.User.userName,
+                roles: []
+              };
+            }
+            acc[memberId].roles.push(item.ProjectRole);
+          
+            return acc;
+          }, {}));
+
+        resOk(res, groupedData)
+
     } catch (error) {
         console.log(error);
         return next(createError.InternalServerError());
@@ -33,11 +53,11 @@ const create = async (req, res, next) => {
     try {
         //check user in project
         const user = await UserService.read(req.body.userId)
-        if (!user){
+        if (!user) {
             return next(createError.BadRequest("not user"))
         }
         const member = await MemberService.readByProjectUser(req.params.pId, req.body.userId)
-        if (member){
+        if (member) {
             return next(createError.BadRequest('user in project'))
         }
         const data = await MemberService.create({

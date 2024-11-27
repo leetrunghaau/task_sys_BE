@@ -1,6 +1,7 @@
 const Member = require('../models/project.member');
 const MemberRole = require('../models/project.member-role');
 const ProjectRole = require('../models/project.role');
+const User = require('../models/user');
 class MemberService {
     static async read(id) {
         return await Member.findOne({ where: { id: id } }) || null
@@ -15,7 +16,7 @@ class MemberService {
         return await Member.findAll({ where: { userId: userId } }) || null
     }
     static async readsByProject(id) {
-        return await Member.findAll({ where: { projectId: id } }) || null
+        return await Member.findAll({ where: { projectId: id }, include:[{model: User}]}) || null
     }
     static async readByProjectUser(projectId, userId) {
         return await Member.findOne({

@@ -1,7 +1,7 @@
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
 
 ### quản lý các role của 1 dự án
-GET   http://localhost:8080/api/v1/project/9/roles
+GET   http://localhost:8080/api/v1/project/4/roles
 Authorization: Bearer {{token}}
 
 ### create
@@ -26,10 +26,6 @@ DELETE  http://localhost:8080/api/v1/project/9/role/12
 Authorization: Bearer {{token}}
 
 ##################################################################################
-##################################################################################
-##################################################################################
-##################################################################################
-##################################################################################
 ###  thiết kết quyền role
 
 GET  http://localhost:8080/api/v1/permissions
@@ -46,13 +42,9 @@ DELETE  http://localhost:8080/api/v1/project/9/role/12/permission/7
 Authorization: Bearer {{token}}
 
 ##################################################################################
-##################################################################################
-##################################################################################
-##################################################################################
-##################################################################################
 ### quản lý các thành viên của 1 dự án  
 
-GET http://localhost:8080/api/v1/project/9/members
+GET http://localhost:8080/api/v1/project/4/members
 Authorization: Bearer {{token}}
 
 ### add member 
@@ -68,10 +60,6 @@ Content-Type: application/json
 DELETE   http://localhost:8080/api/v1/project/9/member/11
 Authorization: Bearer {{token}}
 
-##################################################################################
-##################################################################################
-##################################################################################
-##################################################################################
 ##################################################################################
 ###  cấp quyền cho member của dự án
 POST http://localhost:8080/api/v1/project/9/member/12/role

@@ -1,6 +1,7 @@
 const Member = require('../models/project.member');
 const MemberRole = require('../models/project.member-role');
 const ProjectRole = require('../models/project.role');
+const User = require('../models/user');
 class MemberRoleService {
     static async read(id) {
         return await MemberRole.findOne({ where: { id: id } }) || null
@@ -35,10 +36,10 @@ class MemberRoleService {
                 model: Member,
                 where: {
                     projectId: projectId
-                }
-            }, {
-                model: ProjectRole
-            }
+                },
+                include:[{model: User}]
+
+            }, { model: ProjectRole }
             ]
         }) || null
     }
