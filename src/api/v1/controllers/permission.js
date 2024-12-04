@@ -17,6 +17,28 @@ const gets = async (req, res, next) => {
     }
 };
 
+const getsByRole = async (req, res, next) => {
+    try {
+        const per = await PermissionService.reads()
+        if (!per) {
+            return next(createError.BadRequest())
+        }
+        const perRole = await RolePermissionService.readsByRole(req.params.rId)
+        const perRoleId = perRole.map(item => item.permissionId)
+        const rs = per.map(item => {
+            return {
+                id: item.id,
+                name: item.name,
+                description: item.description,
+                checked: perRoleId.includes(item.id) ? true : false
+            }
+        })
+        resOk(res, rs)
+    } catch (error) {
+        console.log(error);
+        return next(createError.InternalServerError());
+    }
+};
 const create = async (req, res, next) => {
     try {
         //check permissionId
@@ -54,7 +76,7 @@ const del = async (req, res, next) => {
     try {
         //check role
         const rolePermission = await RolePermissionService.readByRolePermission(
-            req.params.rId, 
+            req.params.rId,
             req.params.id
         );
         if (!rolePermission) { resOk(res, true); return; }
@@ -69,7 +91,8 @@ const del = async (req, res, next) => {
 };
 module.exports = {
     gets,
-    create, 
+    getsByRole,
+    create,
     del
 }
 

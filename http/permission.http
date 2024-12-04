@@ -29,6 +29,10 @@ Authorization: Bearer {{token}}
 ###  thiết kết quyền role
 
 GET  http://localhost:8080/api/v1/permissions
+## get by role
+GET  http://localhost:8080/api/v1/project/9/role/1d1/permissions
+Authorization: Bearer {{token}}
+
 ###  cấp quyền 
 POST http://localhost:8080/api/v1/project/9/role/1d1/permission
 Authorization: Bearer {{token}}
