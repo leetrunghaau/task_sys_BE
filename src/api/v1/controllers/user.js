@@ -129,7 +129,7 @@ const del = async (req, res, next) => {
 const findByUName = async (req, res, next) => {
     try {
         const data = await UserService.readsByUserName(req.params.uName)
-        if (data <= 0) {
+        if (data < 0) {
             return next(createError.BadRequest())
         }
         resOk(res, data)
