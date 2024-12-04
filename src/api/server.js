@@ -8,9 +8,9 @@ dotenv.config();
 
 // List of allowed origins (CORS)
 const allowedOrigins = [
-  "http://localhost",
-  "http://s.com", 
-  "http://h.com",
+  "http://localhost:5003",
+  "http://mathsolvervn.com:5003", 
+  "https://mathsolvervn.com:5003", 
   "http://localhost:3000"
 ];
 
