@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/v1/syn_db
 
 ### find user
-GET  http://mathsolvervn.com:4003/api/v1/users/user-name/lee
+GET  http://mathsolvervn.com:4003/api/v1/users/user-name/leae
 
 ### check email
 POST  http://localhost:8080/api/v1/check/email

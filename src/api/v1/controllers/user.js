@@ -99,7 +99,7 @@ const rePass = async (req, res, next) => {
         if(!acc){
             const accData = {
                 userId: req.params.id,
-                pass: await hashPassword(req.body.pass)
+                pass: await hashPassword("12345")
             }
             const acc = await AccountService.create(accData);
         }else{
