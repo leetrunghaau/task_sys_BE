@@ -103,12 +103,12 @@ const rePass = async (req, res, next) => {
             }
             const acc = await AccountService.create(accData);
         }else{
-            const data = await AccountService.update(acc.id, {pass: await hashPassword(req.body.pass)} )
+            const data = await AccountService.update(acc.id, {pass: await hashPassword("12345")} )
             if (!data) {
                 return next(createError.InternalServerError())
             }
         }
-        resOk(res, {pass: req.body.pass});
+        resOk(res, {pass: "12345"});
     } catch (error) {
         console.log(error);
         return next(createError.InternalServerError());
