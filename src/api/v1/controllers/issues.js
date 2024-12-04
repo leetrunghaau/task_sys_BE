@@ -38,7 +38,7 @@ const gets = async (req, res, next) => {
         const member = await MemberService.readsByUser(req.user.id)
         query.projectId = member.map(item => item.projectId)
         if (req.query.project){
-            if (!query.projectId.includes(req.query.project)){
+            if (!query.projectId.includes(parseInt(req.query.project))){
                 return next(createError.Forbidden("Bạn chưa tham gia project này"))
             }else{
                 query.priorityId = req.query.project
