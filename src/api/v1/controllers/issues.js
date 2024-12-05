@@ -41,7 +41,7 @@ const gets = async (req, res, next) => {
             if (!query.projectId.includes(parseInt(req.query.project))){
                 return next(createError.Forbidden("Bạn chưa tham gia project này"))
             }else{
-                query.priorityId = req.query.project
+                query.projectId = parseInt(req.query.project)
             }
         }
         if (req.query.assignee) { query.assignee = req.query.assignee }

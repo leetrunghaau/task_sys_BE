@@ -1,10 +1,10 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMzM0NjAwOCwiZXhwIjoxNzM0NjQyMDA4fQ.vH9J-rKojkQ7yZjFMV_W10AJg9TSNMODFLfuii4cChc
 
 ### gets id
 GET   http://localhost:8080/api/v1/project/4/issues/1
 Authorization: Bearer {{token}}
 ### gets by project id
-GET   http://localhost:8080/api/v1/issuess
+GET   http://localhost:8080/api/v1/issuess?project=4
 Authorization: Bearer {{token}}
 ### gets by project id
 GET   http://localhost:8080/api/v1/issuess?owner=4
