@@ -15,6 +15,20 @@ const gets = async (req, res, next) => {
         return next(createError.InternalServerError());
     }
 };
+const getsByIssuce = async (req, res, next) => {
+    try {
+        if (!req.params.iId){return next(createError.NotFound("Issue bạn tìm khoogn đúng"))}
+        const data = await CommentService.readsByIssue(req.params.iId)
+        if (!data) {
+            return next(createError.BadRequest())
+            
+        }
+        resOk(res, data)
+    } catch (error) {
+        console.log(error);
+        return next(createError.InternalServerError());
+    }
+};
 const create = async (req, res, next) => {
     try {
         req.body.issuesId = req.params.iId
@@ -56,6 +70,7 @@ const del = async (req, res, next) => {
 };
 module.exports = {
     gets,
+    getsByIssuce,
     create,
     update,
     del

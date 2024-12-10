@@ -6,6 +6,12 @@ class CommentService {
     static async reads() {
         return await Comment.findAll({ include: [{ model: Comment, as: 'Chillrend'}] }) || null
     }
+    static async readsByIssue(id) {
+        return await Comment.findAll({ 
+            where: {issuesId: id},
+            include: [{ model: Comment, as: 'Chillrend'}] 
+        }) || null
+    }
     static async readsByIssue(issuesId) {
         return await Comment.findAll({ where: { issuesId: issuesId }, include: [{ model: Comment, as: 'Chillrend'}] }) || null
     }

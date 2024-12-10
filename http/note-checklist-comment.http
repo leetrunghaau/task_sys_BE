@@ -77,6 +77,11 @@ Content-Type: application/json
 DELETE   http://localhost:8080/api/v1/project/4/issues/3/check-list/5
 Authorization: Bearer {{token}}
 ###
+GET  http://localhost:8080/api/v1/project/4/issues/3/comments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+###
 POST http://localhost:8080/api/v1/project/4/issues/3/comment
 Authorization: Bearer {{token}}
 Content-Type: application/json
