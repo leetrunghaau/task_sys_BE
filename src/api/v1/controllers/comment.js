@@ -17,7 +17,7 @@ const gets = async (req, res, next) => {
 };
 const getsByIssuce = async (req, res, next) => {
     try {
-        if (!req.params.iId){return next(createError.NotFound("Issue bạn tìm khoogn đúng"))}
+        if (!req.params.iId){return next(createError.NotFound("Issue bạn tìm không đúng"))}
         const data = await CommentService.readsByIssue(req.params.iId)
         if (!data) {
             return next(createError.BadRequest())

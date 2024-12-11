@@ -48,7 +48,7 @@ Authorization: Bearer {{token}}
 ##################################################################################
 ### quản lý các thành viên của 1 dự án  
 
-GET http://localhost:8080/api/v1/project/4/members
+GET http://mathsolvervn.com:4003/api/v1/project/11/members
 Authorization: Bearer {{token}}
 
 ### add member 
