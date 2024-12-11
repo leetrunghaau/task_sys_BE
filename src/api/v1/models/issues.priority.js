@@ -14,6 +14,11 @@ const Priority = db.define('Priority', {
         allowNull: true,
         field: 'name'
     },
+    color: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        field: 'color'
+    },
     projectId: {
         type: DataTypes.INTEGER,
         allowNull: false,

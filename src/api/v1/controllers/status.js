@@ -29,7 +29,7 @@ const create = async (req, res, next) => {
 };
 const update = async (req, res, next) => {
     try {
-        const data = await StatusService.update(req.params.id, {name: req.body.name ?? ""});
+        const data = await StatusService.update(req.params.id, req.body);
         if (!data) {
             return next(createError.BadRequest())
         }

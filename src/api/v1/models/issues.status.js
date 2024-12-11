@@ -14,6 +14,11 @@ const Status = db.define('Status', {
         allowNull: false,
         field: 'name'
     },
+    color: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        field: 'color'
+    },
     projectId: {
         type: DataTypes.INTEGER,
         allowNull: false,
