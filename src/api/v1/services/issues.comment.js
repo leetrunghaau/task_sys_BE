@@ -10,11 +10,14 @@ class CommentService {
     static async readsByIssue(id) {
         return await Comment.findAll({
             where: { issuesId: id },
-            include: [{ model: Comment, as: 'Chillrend' }, { model: User, attributes: ["name", "userName", "email"] }]
+            include: [
+                { 
+                    model: Comment, as: 'Chillrend',
+                    include: [{ model: User, attributes: ["name", "userName", "email"] }]
+                },
+                { model: User, attributes: ["name", "userName", "email"] }
+            ]
         }) || null
-    }
-    static async readsByIssue(issuesId) {
-        return await Comment.findAll({ where: { issuesId: issuesId }, include: [{ model: Comment, as: 'Chillrend' }] }) || null
     }
     static async create(data) {
         return await Comment.create(data) || null;

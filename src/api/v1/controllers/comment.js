@@ -7,7 +7,7 @@ const gets = async (req, res, next) => {
         const data = await CommentService.reads()
         if (!data) {
             return next(createError.BadRequest())
-            
+
         }
         resOk(res, data)
     } catch (error) {
@@ -17,12 +17,21 @@ const gets = async (req, res, next) => {
 };
 const getsByIssuce = async (req, res, next) => {
     try {
-        if (!req.params.iId){return next(createError.NotFound("Issue bạn tìm không đúng"))}
-        const data = await CommentService.readsByIssue(req.params.iId)
-        if (!data) {
+        if (!req.params.iId) { return next(createError.NotFound("Issue bạn tìm không đúng")) }
+        const comments = await CommentService.readsByIssue(req.params.iId)
+        if (!comments) {
             return next(createError.BadRequest())
-            
+
         }
+        const allChildIds = new Set();
+        comments.forEach(comment => {
+            comment.Chillrend.forEach(child => {
+                allChildIds.add(child.id);
+            });
+        });
+
+        const data = comments.filter(comment => !allChildIds.has(comment.id));
+
         resOk(res, data)
     } catch (error) {
         console.log(error);
