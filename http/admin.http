@@ -1,17 +1,15 @@
-
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
-
+# @import ./var.http
 ### user ========================================================
 ### get
-GET http://localhost:8080/api/v1/user/3
+GET http://{{server}}:{{port}}/api/v1/user/3
 Authorization: Bearer {{token}}
 
 ### gets
-GET http://localhost:8080/api/v1/users
+GET http://{{server}}:{{port}}/api/v1/users
 Authorization: Bearer {{token}}
 
 ###
-POST http://localhost:8080/api/v1/user
+POST http://{{server}}:{{port}}/api/v1/user
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -24,7 +22,7 @@ Content-Type: application/json
     "admin": true 
 }
 ### edit
-PUT  http://localhost:8080/api/v1/user/1
+PUT  http://{{server}}:{{port}}/api/v1/user/1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -36,7 +34,7 @@ Content-Type: application/json
     "admin": true 
 }
 ### reset pass cho user
-PUT  http://localhost:8080/api/v1/user/reset-pass/7
+PUT  http://{{server}}:{{port}}/api/v1/user/reset-pass/7
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -45,5 +43,5 @@ Content-Type: application/json
 }
 
 ### delete
-DELETE http://localhost:8080/api/v1/user/5
+DELETE http://{{server}}:{{port}}/api/v1/user/5
 Authorization: Bearer {{token}}

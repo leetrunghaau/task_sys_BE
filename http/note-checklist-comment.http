@@ -1,6 +1,6 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+# @import ./var.http
 ####
-POST http://localhost:8080/api/v1/project/4/issues/3/note
+POST http://{{server}}:{{port}}/api/v1/project/4/issues/3/note
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -8,7 +8,7 @@ Content-Type: application/json
     "content":"abc"
 }
 ####
-POST http://localhost:8080/api/v1/project/4/issues/3/notes
+POST http://{{server}}:{{port}}/api/v1/project/4/issues/3/notes
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -24,7 +24,7 @@ Content-Type: application/json
     }
 ]
 ###
-PUT  http://localhost:8080/api/v1/project/4/issues/3/note/8
+PUT  http://{{server}}:{{port}}/api/v1/project/4/issues/3/note/8
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -32,7 +32,7 @@ Content-Type: application/json
     "content":"abc"
 }
 ###
-DELETE   http://localhost:8080/api/v1/project/4/issues/3/note/5
+DELETE   http://{{server}}:{{port}}/api/v1/project/4/issues/3/note/5
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -40,7 +40,7 @@ Content-Type: application/json
     "content":"abc"
 }
 ###################################
-POST http://localhost:8080/api/v1/project/4/issues/3/check-list
+POST http://{{server}}:{{port}}/api/v1/project/4/issues/3/check-list
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -49,7 +49,7 @@ Content-Type: application/json
     "checked":true
 }
 ####
-POST http://localhost:8080/api/v1/project/4/issues/3/check-lists
+POST http://{{server}}:{{port}}/api/v1/project/4/issues/3/check-lists
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -65,7 +65,7 @@ Content-Type: application/json
     }
 ]
 ###
-PUT  http://localhost:8080/api/v1/project/4/issues/3/check-list/4
+PUT  http://{{server}}:{{port}}/api/v1/project/4/issues/3/check-list/4
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -74,15 +74,15 @@ Content-Type: application/json
     "checked":true
 }
 ###
-DELETE   http://localhost:8080/api/v1/project/4/issues/3/check-list/5
+DELETE   http://{{server}}:{{port}}/api/v1/project/4/issues/3/check-list/5
 Authorization: Bearer {{token}}
 ###
-GET  http://mathsolvervn.com:4003/api/v1/project/11/issues/20/comments
+GET  http://{{server}}:{{port}}/api/v1/project/11/issues/20/comments
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 ###
-POST http://localhost:8080/api/v1/project/4/issues/3/comment
+POST http://{{server}}:{{port}}/api/v1/project/4/issues/3/comment
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -91,7 +91,7 @@ Content-Type: application/json
     "parentId":6
 }
 ###
-PUT  http://localhost:8080/api/v1/project/4/issues/3/comment/4
+PUT  http://{{server}}:{{port}}/api/v1/project/4/issues/3/comment/4
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -99,5 +99,5 @@ Content-Type: application/json
     "value":"ok"
 }
 ###
-DELETE   http://localhost:8080/api/v1/project/4/issues/3/comment/5
+DELETE   http://{{server}}:{{port}}/api/v1/project/4/issues/3/comment/5
 Authorization: Bearer {{token}}

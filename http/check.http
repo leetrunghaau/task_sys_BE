@@ -1,18 +1,19 @@
+# @import ./var.http
 ### test
-GET http://localhost:8080/api/v1/syn_db
+GET http://{{server}}:{{port}}/api/v1/syn_db
 
 ### find user
-GET  http://mathsolvervn.com:4003/api/v1/users/user-name/leae
+GET  http://{{server}}:{{port}}/api/v1/users/user-name/leae
 
 ### check email
-POST  http://localhost:8080/api/v1/check/email
+POST  http://{{server}}:{{port}}/api/v1/check/email
 Content-Type: application/json
 
 {
     "email": "leetrunghau@gmail.com"
 }
 ### check user name
-POST  http://localhost:8080/api/v1/check/user-name
+POST  http://{{server}}:{{port}}/api/v1/check/user-name
 Content-Type: application/json
 
 {

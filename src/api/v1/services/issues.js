@@ -2,6 +2,7 @@ const Issues = require('../models/issues');
 const Priority = require('../models/issues.priority');
 const Status = require('../models/issues.status');
 const Tracker = require('../models/issues.tracker');
+const Project = require('../models/project');
 const User = require('../models/user');
 class IssuesService {
     static async read(id) {
@@ -29,7 +30,8 @@ class IssuesService {
             { model: Priority },
             { model: Status },
             { model: User, as: "Assignee", attributes: ["name", "userName", "email"] },
-            { model: User, as: "Owner", attributes: ["name", "userName", "email"] }
+            { model: User, as: "Owner", attributes: ["name", "userName", "email"] },
+            { model: Project  },
         ]}) || null
     }
     static async readsByProject(id) {

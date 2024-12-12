@@ -1,15 +1,15 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
-@projectID=1
+# @import ./var.http
 ### project
-GET http://localhost:8080/api/v1/project/1
+GET http://{{server}}:{{port}}/api/v1/project/11
 Authorization: Bearer {{token}}
 
 ### gets
-GET http://localhost:8080/api/v1/projects
+# @debug
+GET http://{{server}}:{{port}}/api/v1/projects
 Authorization: Bearer {{token}}
 
 ### create
-POST http://localhost:8080/api/v1/project
+POST http://{{server}}:{{port}}/api/v1/project
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### update
-PUT http://localhost:8080/api/v1/project/9
+PUT http://{{server}}:{{port}}/api/v1/project/9
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -34,15 +34,15 @@ Content-Type: application/json
     "active": 0
 }
 ### delete
-DELETE http://localhost:8080/api/v1/project/5
+DELETE http://{{server}}:{{port}}/api/v1/project/5
 Authorization: Bearer {{token}}
 
 ### tracker =======================================================================================================
-GET   http://localhost:8080/api/v1/project/{{projectID}}/trackers
+GET   http://{{server}}:{{port}}/api/v1/project/6/trackers
 Authorization: Bearer {{token}}
 
 ### create
-POST   http://localhost:8080/api/v1/project/9/tracker
+POST   http://{{server}}:{{port}}/api/v1/project/9/tracker
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -50,7 +50,7 @@ Content-Type: application/json
     "name": "test"
 }
 ### edit
-PUT   http://localhost:8080/api/v1/project/9/tracker/31
+PUT   http://{{server}}:{{port}}/api/v1/project/9/tracker/31
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -59,15 +59,15 @@ Content-Type: application/json
 }
 
 ### delete 
-DELETE  http://localhost:8080/api/v1/project/9/tracker/31
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/tracker/31
 Authorization: Bearer {{token}}
 
 ### Priority =======================================================================================================
-GET   http://localhost:8080/api/v1/project/9/priorities 
+GET   http://{{server}}:{{port}}/api/v1/project/9/priorities 
 Authorization: Bearer {{token}}
 
 ### create
-POST   http://localhost:8080/api/v1/project/9/priority
+POST   http://{{server}}:{{port}}/api/v1/project/9/priority
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -75,7 +75,7 @@ Content-Type: application/json
     "name": "test"
 }
 ### edit
-PUT   http://localhost:8080/api/v1/project/9/priority/31
+PUT   http://{{server}}:{{port}}/api/v1/project/9/priority/31
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -84,15 +84,15 @@ Content-Type: application/json
 }
 
 ### delete 
-DELETE  http://localhost:8080/api/v1/project/9/priority/31
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/priority/31
 Authorization: Bearer {{token}}
 
 ### status =======================================================================================================
-GET   http://localhost:8080/api/v1/project/9/statuses
+GET   http://{{server}}:{{port}}/api/v1/project/9/statuses
 Authorization: Bearer {{token}}
 
 ### create
-POST   http://localhost:8080/api/v1/project/9/status
+POST   http://{{server}}:{{port}}/api/v1/project/9/status
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -100,7 +100,7 @@ Content-Type: application/json
     "name": "test"
 }
 ### edit
-PUT   http://localhost:8080/api/v1/project/9/status/31
+PUT   http://{{server}}:{{port}}/api/v1/project/9/status/31
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -109,5 +109,5 @@ Content-Type: application/json
 }
 
 ### delete 
-DELETE  http://localhost:8080/api/v1/project/9/status/31
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/status/31
 Authorization: Bearer {{token}}

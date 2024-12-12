@@ -1,11 +1,10 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
-
+# @import ./var.http
 ### quản lý các role của 1 dự án
-GET   http://localhost:8080/api/v1/project/4/roles
+GET   http://{{server}}:{{port}}/api/v1/project/4/roles
 Authorization: Bearer {{token}}
 
 ### create
-POST   http://localhost:8080/api/v1/project/9/role
+POST   http://{{server}}:{{port}}/api/v1/project/9/role
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -13,7 +12,7 @@ Content-Type: application/json
     "name": "test"
 }
 ### edit
-PUT   http://localhost:8080/api/v1/project/9/role/12
+PUT   http://{{server}}:{{port}}/api/v1/project/9/role/12
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -22,19 +21,19 @@ Content-Type: application/json
 }
 
 ### delete 
-DELETE  http://localhost:8080/api/v1/project/9/role/12
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/role/12
 Authorization: Bearer {{token}}
 
 ##################################################################################
 ###  thiết kết quyền role
 
-GET  http://localhost:8080/api/v1/permissions
+GET  http://{{server}}:{{port}}/api/v1/permissions
 ## get by role
-GET  http://localhost:8080/api/v1/project/9/role/1d1/permissions
+GET  http://{{server}}:{{port}}/api/v1/project/9/role/1d1/permissions
 Authorization: Bearer {{token}}
 
 ###  cấp quyền 
-POST http://localhost:8080/api/v1/project/9/role/1d1/permission
+POST http://{{server}}:{{port}}/api/v1/project/9/role/1d1/permission
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -42,17 +41,17 @@ Content-Type: application/json
    "permissionId": 1
 }
 ### bỏ quyền 
-DELETE  http://localhost:8080/api/v1/project/9/role/12/permission/7
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/role/12/permission/7
 Authorization: Bearer {{token}}
 
 ##################################################################################
 ### quản lý các thành viên của 1 dự án  
 
-GET http://mathsolvervn.com:4003/api/v1/project/11/members
+GET http://{{server}}:{{port}}/api/v1/project/15/members
 Authorization: Bearer {{token}}
 
 ### add member 
-POST  http://localhost:8080/api/v1/project/4/member
+POST  http://{{server}}:{{port}}/api/v1/project/4/member
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -61,12 +60,12 @@ Content-Type: application/json
 }
 
 ### delete member 
-DELETE   http://localhost:8080/api/v1/project/9/member/11
+DELETE   http://{{server}}:{{port}}/api/v1/project/9/member/11
 Authorization: Bearer {{token}}
 
 ##################################################################################
 ###  cấp quyền cho member của dự án
-POST http://localhost:8080/api/v1/project/9/member/12/role
+POST http://{{server}}:{{port}}/api/v1/project/9/member/12/role
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -74,7 +73,7 @@ Content-Type: application/json
    "roleId": 92
 }
 ### bỏ quyền cho user
-DELETE  http://localhost:8080/api/v1/project/9/member/6/role/5
+DELETE  http://{{server}}:{{port}}/api/v1/project/9/member/6/role/5
 Authorization: Bearer {{token}}
 
 

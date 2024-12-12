@@ -1,6 +1,6 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTczMjY5MjM5MSwiZXhwIjoxNzMzOTg4MzkxfQ.8gHubHQ61Df3kYbKkUPr5qGCzNhz9siztmvB2i08L4o
+# @import ./var.http
 ### đăng ký
-POST http://localhost:8080/api/v1/sign/up
+POST http://{{server}}:{{port}}/api/v1/sign/up
 Content-Type: application/json
 
 {
@@ -10,20 +10,20 @@ Content-Type: application/json
     "pass":"123456"
 }
 ### đăng nhập
-POST http://localhost:8080/api/v1/sign/in
+POST http://{{server}}:{{port}}/api/v1/sign/in
 Content-Type: application/json
 
 {
-    "user":"leetrunghaau1",
-    "pass":"123456"
+    "user":"leetrunghaau",
+    "pass":"123456789"
 }
 
 ### info ========================================================== 
-GET http://localhost:8080/api/v1/info
+GET http://{{server}}:{{port}}/api/v1/info
 Authorization: Bearer {{token}}
 
 ### update info
-PUT  http://localhost:8080/api/v1/info
+PUT  http://{{server}}:{{port}}/api/v1/info
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -34,7 +34,7 @@ Authorization: Bearer {{token}}
     "gender": "nam"
 }
 ### change pass
-PUT  http://localhost:8080/api/v1/info/change-pass
+PUT  http://{{server}}:{{port}}/api/v1/info/change-pass
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
