@@ -7,6 +7,7 @@ const PriorityService = require("../services/issues.priority");
 const StatusService = require("../services/issues.status");
 const ProjectRoleService = require("../services/project.role");
 const MemberRoleService = require("../services/project.member-role");
+const IssuesService = require("../services/issues");
 
 const get = async (req, res, next) => {
     try {
@@ -20,13 +21,16 @@ const get = async (req, res, next) => {
         const tracker = await TrackerService.readsByProject(project.id);
         const priority = await PriorityService.readsByProject(project.id);
         const status = await StatusService.readsByProject(project.id);
+        const issues = await IssuesService.readsByProject(project.id);
+        
         resOk(res, {
             project: project,
             member:member,
             role:role,
             tracker:tracker,
             priority:priority,
-            status:status
+            status:status,
+            issues: issues
         })
     } catch (error) {
         console.log(error);

@@ -3,6 +3,8 @@ const createError = require('http-errors');
 const PermissionService = require("../services/project.permission");
 const RolePermissionService = require("../services/project.role-permission");
 const ProjectRoleService = require("../services/project.role");
+const ProjectService = require("../services/project");
+const MemberRoleService = require("../services/project.member-role");
 
 const gets = async (req, res, next) => {
     try {
@@ -11,6 +13,28 @@ const gets = async (req, res, next) => {
             return next(createError.BadRequest())
         }
         resOk(res, data)
+    } catch (error) {
+        console.log(error);
+        return next(createError.InternalServerError());
+    }
+};
+const getsByProject = async (req, res, next) => {
+    try {
+        if (req.params.pId) {
+            const project = await ProjectService.read(req.params.pId)
+            if (!project) { return next(createError.NotFound('Project not found')) }
+        }
+        const memberRoles = await MemberRoleService.readsByProjectUser(req.params.pId, user.id)
+        if (memberRoles.length <= 0) {
+            return resOk(res, [])
+        }
+        const roleIds = memberRoles.map(item => item.roleId)
+        const rolePermission = await RolePermissionService.readsByRole(roleIds)
+        if (rolePermission <= 0) {
+            return resOk(res, [])
+        }
+        const permissions = rolePermission.map(item => item.Permission.code)
+        resOk(res, permissions)
     } catch (error) {
         console.log(error);
         return next(createError.InternalServerError());
@@ -92,6 +116,7 @@ const del = async (req, res, next) => {
 };
 module.exports = {
     gets,
+    getsByProject,
     getsByRole,
     create,
     del
