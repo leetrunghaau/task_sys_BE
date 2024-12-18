@@ -37,18 +37,28 @@ const gets = async (req, res, next) => {
         let query = {}
         const member = await MemberService.readsByUser(req.user.id)
         query.projectId = member.map(item => item.projectId)
-        if (req.query.project){
-            if (!query.projectId.includes(parseInt(req.query.project))){
+        if (req.query.project) {
+            if (!query.projectId.includes(parseInt(req.query.project))) {
                 return next(createError.Forbidden("Bạn chưa tham gia project này"))
-            }else{
+            } else {
                 query.projectId = parseInt(req.query.project)
             }
         }
-        if (req.query.assignee) { query.assignee = req.query.assignee }
-        if (req.query.owner) { query.createBy = req.query.owner }
-        if (req.query.tracker) { query.trackerId = req.query.tracker }
-        if (req.query.priority) { query.priorityId = req.query.priority }
-        if (req.query.status) { query.statusId = req.query.status }
+        if (req.query.assignee) {
+            query.assignee = req.query.assignee.split("-").map((num) => Number(num))
+        }
+        if (req.query.owner) {
+            query.createBy = req.query.owner.split("-").map((num) => Number(num))
+        }
+        if (req.query.tracker) {
+            query.trackerId = req.query.tracker.split("-").map((num) => Number(num))
+        }
+        if (req.query.priority) {
+            query.priorityId = req.query.priority.split("-").map((num) => Number(num))
+        }
+        if (req.query.status) {
+            query.statusId = req.query.status.split("-").map((num) => Number(num))
+        }
         const data = await IssuesService.readsQuery(query)
         if (!data) {
             return next(createError.BadRequest())
