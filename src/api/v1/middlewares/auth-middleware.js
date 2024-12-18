@@ -9,6 +9,16 @@ const ProjectService = require('../services/project');
 const CommentService = require('../services/issues.comment');
 const IssuesService = require('../services/issues');
 
+function checkCommonElement(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr2.includes(arr1[i])) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+
 const authorization = (admin, permission = null, owner = null) => {
     return async (req, res, next) => {
         const authHeader = req.headers['authorization'];
@@ -48,22 +58,12 @@ const authorization = (admin, permission = null, owner = null) => {
                     return next(createError.Forbidden("Bạn không có quyền nào trong dự án"))
                 }
                 const permissions = rolePermission.map(item => item.Permission.code)
-                if (!permissions.includes(permission)) {
+                const checkValue = checkCommonElement(permissions, permission)
+                if (!checkValue) {
                     return next(createError.Forbidden("Bạn không có quyền này trong dự án"));
 
                 }
-                if (!owner && owner == "comment") {
-                    const comment = await CommentService.read(req.params.id)
-                    if (comment.userId != user.id) {
-                        return next(createError.Forbidden("Bạn không có quyền này trong dự án"));
-                    }
-                }
-                if (!owner && owner == "issue") {
-                    const comment = await IssuesService.read(req.params.id)
-                    if (comment.createBy != user.id) {
-                        return next(createError.Forbidden("Bạn không có quyền này trong dự án"));
-                    }
-                }
+                req.permission = rolePermission
             }
             next();
         } catch (err) {

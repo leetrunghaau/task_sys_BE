@@ -30,6 +30,7 @@ const getsByRole = async (req, res, next) => {
                 id: item.id,
                 name: item.name,
                 description: item.description,
+                group: item.group,
                 checked: perRoleId.includes(item.id) ? true : false
             }
         })
