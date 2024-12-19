@@ -32,6 +32,10 @@ GET  http://{{server}}:{{port}}/api/v1/permissions
 GET  http://{{server}}:{{port}}/api/v1/project/9/role/1d1/permissions
 Authorization: Bearer {{token}}
 
+## get by project
+GET  http://{{server}}:{{port}}/api/v1/project/11/permissions
+Authorization: Bearer {{token}}
+
 ###  cấp quyền 
 POST http://{{server}}:{{port}}/api/v1/project/9/role/1d1/permission
 Authorization: Bearer {{token}}

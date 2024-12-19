@@ -29,7 +29,7 @@ const signIn = async (req, res, next) => {
             return next(createError.BadRequest('password not match'));
         }
         const token = await generateAccessToken(user.id);
-        resOk(res, { admin: user.admin, token: token })
+        resOk(res, { id: user.id, admin: user.admin, token: token })
 
     } catch (error) {
         console.log(error);
