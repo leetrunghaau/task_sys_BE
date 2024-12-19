@@ -24,7 +24,7 @@ const getsByProject = async (req, res, next) => {
             const project = await ProjectService.read(req.params.pId)
             if (!project) { return next(createError.NotFound('Project not found')) }
         }
-        const memberRoles = await MemberRoleService.readsByProjectUser(req.params.pId, user.id)
+        const memberRoles = await MemberRoleService.readsByProjectUser(req.params.pId, req.user.id)
         if (memberRoles.length <= 0) {
             return resOk(res, [])
         }
