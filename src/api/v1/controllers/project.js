@@ -68,8 +68,8 @@ const create = async (req, res, next) => {
         }
         //tracker 
         const tracker = await TrackerService.creates([
-            { name: "Story", projectId: project.id, color: "yellow" },
             { name: "Task", projectId: project.id, color: "green" },
+            { name: "Story", projectId: project.id, color: "yellow" },
             { name: "Bug", projectId: project.id, color: "red" },
         ])
         //priority
