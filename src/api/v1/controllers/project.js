@@ -94,7 +94,7 @@ const create = async (req, res, next) => {
         const roleOfMember = await ProjectRoleService.create(
             { name: "Member", projectId: project.id })
         const t2 = await RolePermissionService.createsByRole(
-            roleOfAdmin.id,
+            roleOfMember.id,
             [3, 5, 6, 7, 8, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26, 28, 29, 31, 32, 39]
         )
 
