@@ -87,19 +87,34 @@ const create = async (req, res, next) => {
         if (req.body.statusId) {
             const status = await StatusService.read(req.body.statusId)
             if (!status) { return next(createError.BadRequest('Status không có trong dự án')) }
+        } else {
+            const status = await StatusService.readsByProject(req.params.pId)
+            if (status.length > 0) {
+                req.body.statusId = status[0].id
+            }
         }
         if (req.body.trackerId) {
             const tracker = await TrackerService.read(req.body.trackerId)
             if (!tracker) { return next(createError.BadRequest('Tracker không có trong dự án')) }
+        } else {
+            const tracker = await TrackerService.readsByProject(req.params.pId)
+            if (tracker.length > 0) {
+                req.body.trackerId = tracker[0].id
+            }
         }
         if (req.body.priorityId) {
             const priority = await PriorityService.read(req.body.priorityId)
             if (!priority) { return next(createError.BadRequest('Priority không có trong dự án')) }
+        } else {
+            const priority = await PriorityService.readsByProject(req.params.pId)
+            if (priority.length > 0) {
+                req.body.priorityId = priority[0].id
+            }
         }
         if (req.body.assignee) {
             const user = await MemberService.readByProjectUser(req.params.pId, req.body.assignee)
             if (!user) { return next(createError.BadRequest('User không có trong dự án hoặc hệ thống')) }
-        }else{
+        } else {
             req.body.assignee = req.user.id
         }
         if (req.body.parentId) {
