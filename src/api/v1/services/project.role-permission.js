@@ -19,6 +19,18 @@ class RolePermissionService {
     static async create(data) {
         return await RolePermission.create(data) || null;
     }
+    static async creates(data) {
+        return await RolePermission.bulkCreate(data) || null;
+    }
+    static async createsByRole(roleId, listPer) {
+        const raw = listPer.map(item => {
+            return {
+                roleId: roleId,
+                permissionId: item
+            }
+        })
+        return await RolePermission.bulkCreate(raw) || null;
+    }
     static async update(id, data) {
         await RolePermission.update(data, { where: { id: id } }) || null;
         return this.read(id)

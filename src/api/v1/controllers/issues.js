@@ -99,6 +99,8 @@ const create = async (req, res, next) => {
         if (req.body.assignee) {
             const user = await MemberService.readByProjectUser(req.params.pId, req.body.assignee)
             if (!user) { return next(createError.BadRequest('User không có trong dự án hoặc hệ thống')) }
+        }else{
+            req.body.assignee = req.user.id
         }
         if (req.body.parentId) {
             const parent = await IssuesService.read(req.body.parentId)
@@ -106,7 +108,12 @@ const create = async (req, res, next) => {
             if (parent.projectId != req.params.pId) {
                 return next(createError.BadRequest('Issues parent không cùng dự án'))
             }
-
+        }
+        if (!req.body.start) {
+            req.body.start = new Date()
+        }
+        if (!req.body.end) {
+            req.body.start = new Date(Date.now() + 86400000)
         }
         req.body.projectId = req.params.pId
         req.body.created = new Date()

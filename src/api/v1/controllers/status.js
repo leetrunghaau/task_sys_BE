@@ -17,6 +17,7 @@ const getsByProject = async (req, res, next) => {
 const create = async (req, res, next) => {
     try {
         req.body.projectId = req.params.pId
+        req.body.color = "gray"
         const data = await StatusService.create(req.body)
         if (!data) {
             return next(createError.BadRequest())

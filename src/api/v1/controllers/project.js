@@ -8,10 +8,11 @@ const StatusService = require("../services/issues.status");
 const ProjectRoleService = require("../services/project.role");
 const MemberRoleService = require("../services/project.member-role");
 const IssuesService = require("../services/issues");
+const RolePermissionService = require("../services/project.role-permission");
 
 const get = async (req, res, next) => {
     try {
-        
+
         const project = await ProjectService.read(req.params.pId);
         if (!project) {
             return next(createError.BadRequest())
@@ -22,14 +23,14 @@ const get = async (req, res, next) => {
         const priority = await PriorityService.readsByProject(project.id);
         const status = await StatusService.readsByProject(project.id);
         const issues = await IssuesService.readsByProject(project.id);
-        
+
         resOk(res, {
             project: project,
-            member:member,
-            role:role,
-            tracker:tracker,
-            priority:priority,
-            status:status,
+            member: member,
+            role: role,
+            tracker: tracker,
+            priority: priority,
+            status: status,
             issues: issues
         })
     } catch (error) {
@@ -67,29 +68,40 @@ const create = async (req, res, next) => {
         }
         //tracker 
         const tracker = await TrackerService.creates([
-            { name: "Story", projectId: project.id },
-            { name: "Task", projectId: project.id },
-            { name: "bug", projectId: project.id },
+            { name: "Story", projectId: project.id, color: "yellow" },
+            { name: "Task", projectId: project.id, color: "green" },
+            { name: "Bug", projectId: project.id, color: "red" },
         ])
         //priority
         const priority = await PriorityService.creates([
-            { name: "Nomal", projectId: project.id },
-            { name: "Hight", projectId: project.id },
-            { name: "Very Hight", projectId: project.id },
+            { name: "Nomal", projectId: project.id, color: "green" },
+            { name: "Hight", projectId: project.id, color: "yellow" },
+            { name: "Very Hight", projectId: project.id, color: "red" },
         ])
         //status
         const status = await StatusService.creates([
-            { name: "To do", projectId: project.id },
-            { name: "Doing", projectId: project.id },
-            { name: "Done", projectId: project.id },
+            { name: "To do", projectId: project.id, color: "purple" },
+            { name: "Doing", projectId: project.id, color: "yellow" },
+            { name: "Done", projectId: project.id, color: "green" },
         ])
         //role
-        const role = await ProjectRoleService.create(
+        const roleOfAdmin = await ProjectRoleService.create(
             { name: "Admin", projectId: project.id })
+        const t1 = await RolePermissionService.createsByRole(
+            roleOfAdmin.id,
+            [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 44, 45, 46]
+        )
+        const roleOfMember = await ProjectRoleService.create(
+            { name: "Member", projectId: project.id })
+        const t2 = await RolePermissionService.createsByRole(
+            roleOfAdmin.id,
+            [3, 5, 6, 7, 8, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26, 28, 29, 31, 32, 39]
+        )
+
         //add member
         const member = await MemberService.create({ projectId: project.id, userId: req.user.id })
         //add member role admin
-        const memberRole = await MemberRoleService.create({memberId: member.id, roleId: role.id})
+        const memberRole = await MemberRoleService.create({ memberId: member.id, roleId: roleOfAdmin.id })
         resOk(res, project)
     } catch (error) {
         console.log(error);
